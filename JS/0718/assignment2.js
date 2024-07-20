@@ -29,6 +29,9 @@ function findLongStr(str) {
   return str
     .split(" ")
     .reduce((prev, cur) => (cur.length > prev.length ? cur : prev));
+
+  // 또 다른 방법
+  // str.split(" ").sort((a, b) => b.length - a.length).shift();
 }
 
 let result = findLongStr("we are the champion");

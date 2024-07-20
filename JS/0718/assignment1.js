@@ -13,7 +13,7 @@ const students = [
 
 // 1. 키가 185인 학생 찾기
 {
-  console.log(students.find((student) => student.height >= 185));
+  console.log(students.find((student) => student.height === 185));
 }
 
 //2. 나이가 20살 이상인 학생들 찾기
@@ -33,9 +33,9 @@ const students = [
 
 //5. 학생들의 평균 연령 구하기
 {
-  const sum = students.reduce((prevValue, cntValue) => {
-    return prevValue + cntValue.age;
-  }, 0);
+  const sum = students.reduce((acc, student) => {
+    return acc + student.age;
+  }, (initialValue = 0));
 
   console.log(sum / students.length);
 }
@@ -44,9 +44,9 @@ const students = [
 {
   const sum = students
     .filter((student) => student.gender === "male")
-    .reduce((prevValue, cntValue) => {
-      return prevValue + cntValue.age;
-    }, 0);
+    .reduce((acc, student) => {
+      return acc + student.age;
+    }, (initialValue = 0));
 
   console.log(sum / students.length);
 }
@@ -59,8 +59,9 @@ const students = [
 
 //8. 여학생들 중 나이가 가장 어린 학생 찾기
 {
-  console.log(
-    students.sort((a, b) => {
+  const s = students
+    .filter((student) => student.gender === "female")
+    .sort((a, b) => {
       if (a.age > b.age) {
         return 1;
       } else if (a.age < b.age) {
@@ -68,6 +69,7 @@ const students = [
       } else {
         return 0;
       }
-    })
-  );
+    })[0];
+
+  console.log(s);
 }
